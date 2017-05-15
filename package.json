@@ -1,0 +1,25 @@
+{
+  "name": "base-project",
+  "version": "0.0.1",
+  "description": "Recruitment test for WInn SAS.",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "Médéric Salles",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "~1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-sanitize": "^1.6.4",
+    "angular-ui-router": "^1.0.3",
+    "body-parser": "~1.15.1",
+    "chai": "^3.5.0",
+    "ejs": "~2.5.6",
+    "express": "~4.13.4",
+    "mocha": "^3.4.1"
+  },
+  "devDependencies": {
+    "angular": "^1.6.4"
+  }
+}
