@@ -317,7 +317,8 @@ class Transport {
                 Transport.findAddresses(t.coordinates_from.lat,t.coordinates_from.lon,t.coordinates_to.lat,t.coordinates_to.lon);
                 id++;
                 var el = new Transport(id,t.title,t.coordinates_from.lat,t.coordinates_from.lon,t.coordinates_to.lat,t.coordinates_to.lon, t.vehicule, t.comment);
-                liste.push(el);           
+                liste.push(el);
+                console.log(el);
         }  
             return liste; 
     };

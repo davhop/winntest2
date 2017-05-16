@@ -22,7 +22,7 @@ server.use(bodyParser.json())
  * Configuration des routes
  * @type Module listRoutes|Module listRoutes
  */
-var routes = require('./api/routes/listRoutes')
+var routes = require('./api/routes/listRoutes');
 routes(server);
 /**
  * démarre le serveur

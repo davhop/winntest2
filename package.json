@@ -4,7 +4,7 @@
   "description": "Recruitment test for WInn SAS.",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha"
   },
   "author": "Médéric Salles",
   "license": "ISC",
@@ -14,12 +14,11 @@
     "angular-sanitize": "^1.6.4",
     "angular-ui-router": "^1.0.3",
     "body-parser": "~1.15.1",
-    "chai": "^3.5.0",
     "ejs": "~2.5.6",
-    "express": "~4.13.4",
-    "mocha": "^3.4.1"
+    "express": "~4.13.4"
   },
   "devDependencies": {
-    "angular": "^1.6.4"
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1"
   }
 }
