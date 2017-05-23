@@ -1,5 +1,6 @@
 /** Class representant un transportt. */
 class Transport {
+    
     /**
     * Constructeur de Transport
     * @contructor
@@ -14,21 +15,21 @@ class Transport {
     * @returns {nm$_transport.Transport}
     */
     constructor(id,title,coordinates_from_lat,coordinates_from_lon,coordinates_to_lat,coordinates_to_lon,vehicule,comment){
-    const dep = Transport.position(coordinates_from_lat,coordinates_from_lon);
-    const arr = Transport.position(coordinates_to_lat,coordinates_to_lon);           
-        this._id = id;
-        this._title = title;
-        this._coordinates_from_lat = coordinates_from_lat;
-        this._coordinates_from_lon = coordinates_from_lon;
-        this._coordinates_to_lat = coordinates_to_lat;
-        this._coordinates_to_lon = coordinates_to_lon;
-        this._vehicule = vehicule;
-        this._comment = comment;
-        this._addressDepart = dep.place_id;
-        this._departNom = dep.formatted_address;
-        this._addressArrivee = arr.place_id;
-        this._arrivNom = arr.formatted_address;
-        this._map = 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAH7gbryCvy7UyxcJUFZ47rBfXQVc4O_Bk&mode='+ Transport.vehicle(this._vehicule)+'&origin=place_id:' + this._addressDepart + '&destination=place_id:' + this._addressArrivee;
+        const lieuDep = require('../../data/reponse' + coordinates_from_lat + '_' + coordinates_from_lon + 'z.json');
+        const dep = Transport.position(coordinates_from_lat,coordinates_from_lon,lieuDep);
+        const lieuArr = require('../../data/reponse' + coordinates_to_lat + '_' + coordinates_to_lon + 'z.json');
+        const arr = Transport.position(coordinates_to_lat,coordinates_to_lon,lieuArr);           
+            this._id = id;
+            this._title = title;
+            this._coordinates_from_lat = coordinates_from_lat;
+            this._coordinates_from_lon = coordinates_from_lon;
+            this._coordinates_to_lat = coordinates_to_lat;
+            this._coordinates_to_lon = coordinates_to_lon;
+            this._vehicule = vehicule;
+            this._comment = comment;
+            this._departNom = dep.formatted_address;
+            this._arrivNom = arr.formatted_address;
+            this._map = 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAH7gbryCvy7UyxcJUFZ47rBfXQVc4O_Bk&mode='+ Transport.vehicle(this._vehicule)+'&origin=' + this._coordinates_from_lat + ','+ this._coordinates_from_lon +'&destination=' + this._coordinates_to_lat +',' + this._coordinates_to_lon ;
     }
     /**
      * retourne id identifiant
@@ -143,20 +144,6 @@ class Transport {
             this._comment = com;
     }
     /**
-     * retourne addressDepart code google point de départ
-     * @returns {.Transport@call;position.place_id|dep.place_id}
-     */
-    get addressDepart(){
-            return this._addressDepart;
-    }
-    /**
-     * attribue addressDepart
-     * @param {String} ad
-     */
-    set addressDepart(ad){
-            this._addressDepart = ad;
-    }
-    /**
      * retourne departNom nom localite de depart
      * @returns {.Transport@call;position.formatted_address|dep.formatted_address}
      */
@@ -171,20 +158,6 @@ class Transport {
             this._departNom = dn;
     }
     /**
-     * retourne addressArrivee code google point d'arrivee
-     * @returns {.Transport@call;position.place_id|arr.place_id}
-     */
-    get addressArrivee(){
-            return this._addressArrivee;
-    }
-    /**
-     * attribue addressArrivee
-     * @param {String} aa
-     */
-    set addressArrivee(aa){
-            this._addressArrivee = aa;
-    }
-    /**
      * retourne arrNom nom localite d'arrivee
      * @returns {nm$_transport.Transport._arrNom}
      */
@@ -194,7 +167,6 @@ class Transport {
     /**
      * attribue arrNom
      * @param {String} an
-     * @returns {undefined}
      */
     set arrNom(an){
             this._arrNom = an;
@@ -248,7 +220,7 @@ class Transport {
     
     /**
      * retourne mode transport pour requête google maps
-     * @param {type} vehicule
+     * @param {String} vehicule
      * @returns {String}
      */
     static vehicle(vehicule){
@@ -293,12 +265,12 @@ class Transport {
      * Récupère le code position de google map et l'adresse formatée
      * @param {Number } lat
      * @param {Number } lon
+     * @param {json} path
      * @returns {Object}
      */
-    static position(lat,lon){
-         const lieu = require('../../data/reponse' + lat + '_' + lon + 'z.json');
+    static position(lat,lon,path){        
          let result = [];
-            for (let i of lieu.results){
+            for (let i of path.results){
                 result.place_id = i.place_id;
                 result.formatted_address = i.formatted_address;
                 }
@@ -317,9 +289,10 @@ class Transport {
                 Transport.findAddresses(t.coordinates_from.lat,t.coordinates_from.lon,t.coordinates_to.lat,t.coordinates_to.lon);
                 id++;
                 var el = new Transport(id,t.title,t.coordinates_from.lat,t.coordinates_from.lon,t.coordinates_to.lat,t.coordinates_to.lon, t.vehicule, t.comment);
-                liste.push(el);
-                console.log(el);
+                
+                 liste.push(el);           
         }  
+        console.log(liste);
             return liste; 
     };
 }

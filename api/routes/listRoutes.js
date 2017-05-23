@@ -1,15 +1,15 @@
 'use strict';
-module.exports = function(server) {
+module.exports = function(app) {
   var listeTrns = require('../controller/listController');
 
 
   /**  Routes */
-  server.route('/api/transports')
+  app.route('/api/transports')
     .get(listeTrns.list)
     .post(listeTrns.create);
 
 
-  server.route('/api/transports/:id')
+  app.route('/api/transports/:id')
     .get(listeTrns.read)
     .put(listeTrns.update)
     .delete(listeTrns.delete);

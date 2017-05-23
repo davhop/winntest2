@@ -4,12 +4,6 @@ let assert = require('assert'),
         
 const Transport = require('../api/model/transport.js');
 
-
-function vehicle(v){
-    return Transport.vehicle(v);
-}
-
-
 /** Tests de la classe Transport */ 
 describe('Transport',()=>{
     describe('#constructor()',()=>{
@@ -38,6 +32,7 @@ describe('Transport',()=>{
             }).should.throw(Error);
         });
     });
+     
     /** tests de la fonction vehicle()  */
     describe('#vehicle()',function(){
         let tests = [
@@ -47,7 +42,7 @@ describe('Transport',()=>{
         ];
         tests.forEach(function(test){
             it('returns corresponding transport mode for google request',function(){
-                let res = vehicle.apply(null,[test.args]);
+                let res = Transport.vehicle.apply(null,[test.args]);
                 assert.equal(res, test.expected);
             });
         });
