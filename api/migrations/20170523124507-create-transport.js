@@ -14,19 +14,19 @@ module.exports = {
       },
       coordinatesFromLat: {
         allowNull: false,
-        type: Sequelize.FLOAT
+        type: Sequelize.DECIMAL
       },
       coordinatesFromLon: {
         allowNull: false,
-        type: Sequelize.FLOAT
+        type: Sequelize.DECIMAL
       },
       coordinatesToLat: {
         allowNull: false,
-        type: Sequelize.FLOAT
+        type: Sequelize.DECIMAL
       },
       coordinatesToLon: {
         allowNull: false,
-        type: Sequelize.FLOAT
+        type: Sequelize.DECIMAL
       },
       vehicle: {
         allowNull: false,
@@ -34,7 +34,7 @@ module.exports = {
       },
       comment: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       map: {
         allowNull: false,

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-  var listeTrns = require('../controller/listController');
+  var listeTrns = require('../controller').transport;
 
 
   /**  Routes */
@@ -10,9 +10,9 @@ module.exports = function(app) {
 
 
   app.route('/api/transports/:id')
-    .get(listeTrns.read)
+    .get(listeTrns.retrieve)
     .put(listeTrns.update)
-    .delete(listeTrns.delete);
+    .delete(listeTrns.destroy);
 };
 
 

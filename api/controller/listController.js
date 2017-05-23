@@ -1,19 +1,21 @@
 'use strict';
 
-const Transport = require('../model/transport.js');
+const Transport = require('../models').Transport;
 const transports = require('../../data/transports.json');
 
+module.exports = {
 /**
  * retourne la liste des transports
  * @param {type} req
  * @param {type} res
  * @returns {Transport.listeTransports()}
  */
-exports.list = (req, res) => {
-    let liste = [];
-    liste = Transport.listeTransports(transports.transports);
-    res.status(200).json(liste);
-};
+list(req, res) {
+    return Transport
+    .all()
+    .then(transports => res.status(200).send(transports))
+    .catch(error => res.status(400).send(error));
+},
 
 /**
  * crée un transport
@@ -22,14 +24,21 @@ exports.list = (req, res) => {
  * @param {type} res
  * @returns {nm$_transport.Transport}
  */
-exports.create = (req, res) => {
-  let new_transport = new Transport(req.body);
-  new_transport.save(function(err, transport) {
-    if (err)
-      res.send(err);
-    res.json(transport); 
-  });
-};
+create(req, res){
+     return Transport
+      .create({
+        title: req.body.title,
+        coordinatesFromLat: req.body.coordinatesFromLat,
+        coordinatesFromLon: req.body.coordinatesFromLon,
+        coordinatesToLat: req.body.coordinatesToLat,
+        coordinatesToLon: req.body.coordinatesToLon,
+        vehicle : req.body.vehicle ,
+        comment : req.body.comment,
+        map : 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAH7gbryCvy7UyxcJUFZ47rBfXQVc4O_Bk&mode='+ req.body.vehicle+'&origin=' + req.body.coordinatesFromLat + ','+ req.body.coordinatesFromLon +'&destination=' + req.body.coordinatesToLat +',' + req.body.coordinatesToLon
+      })
+      .then(transport => res.status(201).send(transport))
+      .catch(error => res.status(400).send(error));
+},
 /**
  * retourne un transport
  * @todo Implement this function.
@@ -37,13 +46,13 @@ exports.create = (req, res) => {
  * @param {type} res
  * @returns {nm$_transport.Transport}
  */
-exports.read = (req, res) => {
+retrieve(req, res){
   Transport.findById(req.params.id, function(err, transport) {
     if (err)
       res.send(err);
     res.json(transport);
   });
-};
+},
 
 /**
  * met à jour le transport
@@ -52,13 +61,13 @@ exports.read = (req, res) => {
  * @param {type} res
  * @returns {nm$_transport.Transport}
  */
-exports.update = (req, res) => {
+update(req, res){
   Transport.findOneAndUpdate(req.params.id, req.body, {new: true}, function(err, transport) {
     if (err)
       res.send(err);
     res.json(transport);
   });
-};
+},
 
 /**
  * supprime le transportt avec son id 
@@ -67,7 +76,7 @@ exports.update = (req, res) => {
  * @param {type} res
  * @returns {message}
  */
-exports.delete = (req, res) => {
+destroy(req, res){
   Transport.remove({
     _id: req.params.id
   }, function(err, transport) {
@@ -75,6 +84,7 @@ exports.delete = (req, res) => {
       res.send(err);
     res.json({ message: 'Transport successfully deleted' });
   });
+}
 };
 
 

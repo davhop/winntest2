@@ -11,47 +11,47 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label col-sm-2" for="inputDepartlat">From latitude :  </label>
+            <label class="control-label col-sm-2" for="inputCoordinatesFromLat">From latitude :  </label>
             <div class="col-sm-10">
-                <input type='number' id="inputDepartlat" name="inputDepartlat" class="form-control" ng-model='transport.coordinates_from_lat'>
+                <input type='text' id="inputCoordinatesFromLat" name="inputCoordinatesFromLat" class="form-control" ng-model='transport.coordinatesFromLat'>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label col-sm-2" for="inputDepartlon">From longitude :  </label>
+            <label class="control-label col-sm-2" for="inputCoordinatesFromLon">From longitude :  </label>
             <div class="col-sm-10">
-                <input type='number' id='inputDepartlon' class="form-control" ng-model='transport.coordinates_from_lon'>
+                <input type='text' id='inputCoordinatesFromLon' class="form-control" ng-model='transport.coordinatesFromLon'>
             </div>
         </div>
         <hr>
         <div class="control-group">
-            <label class="control-label col-sm-2" for="inputEndlat">To latitude :  </label>
+            <label class="control-label col-sm-2" for="inputCoordinatesToLat">To latitude :  </label>
             <div class="col-sm-10">
-                <input type='number' id='inputEndlat' class="form-control" ng-model='transport.coordinates_to_lat'>
+                <input type='text' id='inputCoordinatesToLat' class="form-control" ng-model='transport.coordinatesToLat'>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label col-sm-2" for="inputEndlon">To longitude :  </label>
+            <label class="control-label col-sm-2" for="inputCoordinatesToLon">To longitude :  </label>
             <div class="col-sm-10">
-                <input type='number' id='inputEndlon' class="form-control" ng-model='transport.coordinates_to_lon'>
+                <input type='text' id='inputCoordinatesToLon' class="form-control" ng-model='transport.coordinatesToLon'>
             </div>
         </div>
         <div class="control-group" >
             <div class="col-sm-offset-2 col-sm-10">
                 <select class='form-control' id='inputVehicle' ng-model='transport.vehicle'>
                     <option value=''>select transport mode </option>
-                    <option value='car'>car</option>
-                    <option value='foot'>foot</option>
-                    <option value='bike'>bike</option>                   
+                    <option value='driving'>car</option>
+                    <option value='walking'>foot</option>
+                    <option value='bicycling'>bike</option>                   
                 </select>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label col-sm-2" for="inputEndlon">Comment :  </label>
+            <label class="control-label col-sm-2" for="comment">Comment :  </label>
             <div class="col-sm-10">
-                <textarea type='number' id='inputEndlon' class="form-control" ng-model='transport.comment'></textarea>
+                <textarea type='text' id='comment' class="form-control" ng-model='transport.comment'></textarea>
             </div>
         </div>
         <a ng-click="cancel()" class="btn btn-danger">cancel</a>
-        <a ng-click="createTransport()" class="btn btn-success disabled">create transport</a>
+        <a ng-click="createTransport()" class="btn btn-success">create transport</a>
     </form>
 </div>
